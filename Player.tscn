@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://art/left_0.png" type="Texture" id=2]
-[ext_resource path="res://art/right_0.png" type="Texture" id=3]
-[ext_resource path="res://art/right_1.png" type="Texture" id=4]
-[ext_resource path="res://art/right_2.png" type="Texture" id=5]
-[ext_resource path="res://art/down_0.png" type="Texture" id=6]
-[ext_resource path="res://art/bounce.png" type="Texture" id=7]
-[ext_resource path="res://art/up_0.png" type="Texture" id=8]
-[ext_resource path="res://art/up_2.png" type="Texture" id=9]
-[ext_resource path="res://art/up_1.png" type="Texture" id=10]
-[ext_resource path="res://art/down_1.png" type="Texture" id=11]
-[ext_resource path="res://art/down_2.png" type="Texture" id=12]
+[ext_resource path="res://art/left_1.png" type="Texture" id=3]
+[ext_resource path="res://art/left_2.png" type="Texture" id=4]
+[ext_resource path="res://art/right_0.png" type="Texture" id=5]
+[ext_resource path="res://art/right_1.png" type="Texture" id=6]
+[ext_resource path="res://art/right_2.png" type="Texture" id=7]
+[ext_resource path="res://art/down_0.png" type="Texture" id=8]
+[ext_resource path="res://art/bounce.png" type="Texture" id=9]
+[ext_resource path="res://art/up_0.png" type="Texture" id=10]
+[ext_resource path="res://art/up_2.png" type="Texture" id=11]
+[ext_resource path="res://art/up_1.png" type="Texture" id=12]
+[ext_resource path="res://art/down_1.png" type="Texture" id=13]
+[ext_resource path="res://art/down_2.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -21,27 +23,27 @@ extents = Vector2( 62.1641, 119.363 )
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "left",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "right",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "bounce",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "up",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "down",
 "speed": 10.0
@@ -69,9 +71,10 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
 scale = Vector2( 0.15, 0.15 )
+z_index = 1
 frames = SubResource( 1 )
 animation = "left"
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 

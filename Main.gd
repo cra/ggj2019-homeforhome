@@ -25,6 +25,7 @@ func _ready():
 		var c = bgTree if shall_build_tree else NPCHouse
 		var obj = c.instance()
 		x += obj.width
+		obj.set_z_index(0)
 		obj.position = Vector2(x, 300)
 		add_child(obj)
 
