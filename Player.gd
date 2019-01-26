@@ -11,11 +11,12 @@ signal touch
 func start(pos):
 	position = pos
 	show()
+	set_as_toplevel(true)
 	$CollisionShape2D.disabled = false
 
 func _ready():
 	screensize = get_viewport_rect().size
-	hide()
+#	hide()
 
 func _process(delta):
 	var velocity = Vector2() # The player's movement vector.
@@ -49,4 +50,6 @@ func _process(delta):
 
 func _on_Player_body_entered(body):
 	emit_signal("touch")
-	$CollisionShape2D.disabled = true
+#	$AnimatedSprite.animation = "bounce"
+#	set_process(false)
+#	$CollisionShape2D.disabled = true

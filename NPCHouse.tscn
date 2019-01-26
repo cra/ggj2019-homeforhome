@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://NPCHouse.gd" type="Script" id=1]
+[ext_resource path="res://art/houses/house 1.png" type="Texture" id=2]
+[ext_resource path="res://art/houses/Window 1.png" type="Texture" id=3]
+[ext_resource path="res://art/houses/fence 1.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 53.6286, 75.4863 )
+
+[node name="NPCHouse" type="RigidBody2D"]
+
+z_index = -1
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="Visibility" type="VisibilityNotifier2D" parent="." index="1"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="House" type="Sprite" parent="." index="2"]
+
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Window" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, 25 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Fence" type="Sprite" parent="." index="4"]
+
+position = Vector2( 0, 97 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[connection signal="screen_exited" from="Visibility" to="." method="_on_Visibility_screen_exited"]
+
+

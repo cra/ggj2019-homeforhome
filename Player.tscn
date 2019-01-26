@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://art/left_0.png" type="Texture" id=2]
 [ext_resource path="res://art/right_0.png" type="Texture" id=3]
 [ext_resource path="res://art/right_1.png" type="Texture" id=4]
 [ext_resource path="res://art/right_2.png" type="Texture" id=5]
-[ext_resource path="res://art/up_0.png" type="Texture" id=6]
-[ext_resource path="res://art/up_2.png" type="Texture" id=7]
-[ext_resource path="res://art/up_1.png" type="Texture" id=8]
-[ext_resource path="res://art/down_0.png" type="Texture" id=9]
-[ext_resource path="res://art/down_1.png" type="Texture" id=10]
-[ext_resource path="res://art/down_2.png" type="Texture" id=11]
+[ext_resource path="res://art/down_0.png" type="Texture" id=6]
+[ext_resource path="res://art/bounce.png" type="Texture" id=7]
+[ext_resource path="res://art/up_0.png" type="Texture" id=8]
+[ext_resource path="res://art/up_2.png" type="Texture" id=9]
+[ext_resource path="res://art/up_1.png" type="Texture" id=10]
+[ext_resource path="res://art/down_1.png" type="Texture" id=11]
+[ext_resource path="res://art/down_2.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -25,12 +26,17 @@ animations = [ {
 "name": "right",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "bounce",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "up",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "down",
 "speed": 10.0
@@ -66,6 +72,31 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 
