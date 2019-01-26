@@ -24,12 +24,8 @@ func _ready():
 		var shall_build_tree = randf() > TREE_PROB_THRESHOLD
 		var c = bgTree if shall_build_tree else NPCHouse
 		var obj = c.instance()
-		var shift = randi() % 25 - 50
 		x += obj.width
-		if randf() > 0.5:
-			obj.set_z_index(1)
-			shift += 100
-		obj.position = Vector2(x, 300 + shift)
+		obj.position = Vector2(x, 300)
 		add_child(obj)
 
 #	for i in range(10):
