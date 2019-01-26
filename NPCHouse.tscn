@@ -10,7 +10,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 53.6286, 75.4863 )
 
-[node name="NPCHouse" type="RigidBody2D"]
+[node name="NPCHouse" type="RigidBody2D" groups=[
+"noninteractive",
+]]
 
 z_index = -1
 input_pickable = false
@@ -36,6 +38,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
+width = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

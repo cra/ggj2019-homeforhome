@@ -7,6 +7,8 @@ var house_types = 3
 var window_types = 10
 var fence_types = 3
 
+export (int) var width
+
 func _ready():
 	pass
 

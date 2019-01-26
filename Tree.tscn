@@ -6,12 +6,12 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 6.63599
+radius = 0.488853
 height = 142.244
 
-[node name="Tree" type="RigidBody2D" index="0"]
+[node name="Tree" type="RigidBody2D"]
 
-z_index = 1
+z_index = -1
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -32,6 +32,7 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
+width = 30
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

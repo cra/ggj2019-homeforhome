@@ -33,23 +33,27 @@ func _process(delta):
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
+		
+#	if Input.is_action_pressed("ui_interact"):
+#		print(self.get_overlapping_bodies())
 	
 	position += velocity * delta
-	position.x = clamp(position.x, 0, screensize.x)
-	position.y = clamp(position.y, 0, screensize.y)
+#	position.x = clamp(position.x, 0, screensize.x)
+	position.y = clamp(position.y, screensize.y/2-10, screensize.y/2+70)
 	
-	if velocity.x != 0:
+	if velocity.x >= 0:
 		$AnimatedSprite.animation = "right"
-		$AnimatedSprite.flip_v = false
-		$AnimatedSprite.flip_h = velocity.x < 0
+	elif velocity.x < 0:
+		$AnimatedSprite.animation = "left"
 	elif velocity.y < 0:
 		$AnimatedSprite.animation = "up"
-	elif velocity.y > 0:
+	elif velocity.y >= 0:
 		$AnimatedSprite.animation = "down"
 
 
 func _on_Player_body_entered(body):
-	emit_signal("touch")
+	if body.is_in_group("interactive"):
+		emit_signal("touch")
 #	$AnimatedSprite.animation = "bounce"
 #	set_process(false)
 #	$CollisionShape2D.disabled = true
