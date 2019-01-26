@@ -2,13 +2,20 @@ extends Area2D
 
 export (int) var speed
 var screensize
+signal touch
 
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
 func _ready():
 	screensize = get_viewport_rect().size
+	hide()
 
 func _process(delta):
 	var velocity = Vector2() # The player's movement vector.
@@ -38,3 +45,8 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	elif velocity.y > 0:
 		$AnimatedSprite.animation = "down"
+
+
+func _on_Player_body_entered(body):
+	emit_signal("touch")
+	$CollisionShape2D.disabled = true
