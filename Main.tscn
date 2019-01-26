@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://NPCHouse.tscn" type="PackedScene" id=2]
@@ -7,11 +7,13 @@
 [ext_resource path="res://art/background road actual.png" type="Texture" id=5]
 [ext_resource path="res://art/hamlet, desert background strip.png" type="Texture" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://TravellersHouse.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Node"]
 
 script = ExtResource( 1 )
-InitialX = 300
+InitialX = -50
+InitialY = 375
 NPCHouse = ExtResource( 2 )
 TalkBox = ExtResource( 3 )
 bgTree = ExtResource( 4 )
@@ -39,7 +41,7 @@ _sections_unfolded = [ "Motion" ]
 
 [node name="StartPosition" type="Position2D" parent="." index="1"]
 
-position = Vector2( 200, 400 )
+position = Vector2( 150, 420 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Road" type="TextureRect" parent="." index="2"]
@@ -49,9 +51,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -540.0
-margin_top = 378.0
+margin_top = 458.0
 margin_right = 2893.0
-margin_bottom = 578.0
+margin_bottom = 658.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -76,10 +78,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -540.0
-margin_top = -105.0
-margin_right = 38.0
-margin_bottom = 85.0
+margin_left = 1.0
+margin_top = -13.0
+margin_right = 14.0
+margin_bottom = 9.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -91,6 +93,8 @@ stretch_mode = 2
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility" ]
 
 [node name="Player" parent="." index="4" instance=ExtResource( 7 )]
+
+[node name="TravellersHouse" parent="." index="5" instance=ExtResource( 8 )]
 
 [connection signal="touch" from="Player" to="." method="_on_Player_touch"]
 

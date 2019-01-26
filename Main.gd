@@ -1,6 +1,7 @@
 extends Node
 
 export (int) var InitialX
+export (int) var InitialY
 
 # class member variables go here, for example:
 # var a = 2
@@ -18,6 +19,8 @@ func give_build_shift(is_tree):
 
 
 func _ready():
+	$TravellersHouse.position = Vector2(1000, InitialY)
+	
 	randomize()
 	var x = InitialX
 	for i in range(200):
@@ -25,8 +28,9 @@ func _ready():
 		var c = bgTree if shall_build_tree else NPCHouse
 		var obj = c.instance()
 		x += obj.width
-		obj.set_z_index(0)
-		obj.position = Vector2(x, 300)
+		if !shall_build_tree:
+			obj.set_z_index(0)
+		obj.position = Vector2(x, InitialY)
 		add_child(obj)
 
 #	for i in range(10):
@@ -51,8 +55,8 @@ func new_game():
 
 
 func _on_Player_touch():
-	pass
-#	print("Fuck meee")
+	$TravellersHouse.enable_eyes()
+	print("Fuck meee")
 #	var tb = TalkBox.instance()
 #	add_child(tb)
 	#print($Player.get_collider())
