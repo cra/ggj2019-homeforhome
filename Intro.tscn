@@ -16,7 +16,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="Intro" type="Node" index="0"]
+[node name="Intro" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -114,8 +114,17 @@ autostart = false
 position = Vector2( 1044.35, 137.046 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
+playing = true
 
-[node name="SceneSwitchTimer" type="Timer" parent="." index="2"]
+[node name="InbetweenTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="SceneSwitchTimer" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 3.0
@@ -133,6 +142,8 @@ autostart = false
 [connection signal="timeout" from="Scene1/ZoomTimer" to="." method="_on_ZoomTimer_timeout"]
 
 [connection signal="timeout" from="Scene2/RevealTimer" to="." method="_on_RevealTimer_timeout"]
+
+[connection signal="timeout" from="InbetweenTimer" to="." method="_on_InbetweenTimer_timeout"]
 
 [connection signal="timeout" from="SceneSwitchTimer" to="." method="_on_SceneSwitchTimer_timeout"]
 

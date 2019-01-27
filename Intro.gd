@@ -38,7 +38,7 @@ func _on_ZoomTimer_timeout():
 	var zoom = $Scene1/Camera.get_zoom()
 	if Scene1MovedLeftCount < 15:
 		$Scene1/Camera.set_zoom(Vector2(zoom.x * 0.95, zoom.y * 0.95))
-		$Scene1/Camera.translate(Vector2(-100, 50))
+		$Scene1/Camera.translate(Vector2(-60, 33))
 	else:
 		$Scene1/ZoomTimer.stop()
 		emit_signal("scene1_zoom_end")
@@ -47,14 +47,7 @@ func _on_ZoomTimer_timeout():
 
 
 func _on_Intro_scene1_zoom_end():
-	$Scene1.hide()
-	$Scene1/Camera.clear_current()
-	$Scene1.queue_free()
-	
-	$Scene2/Camera.make_current()
-	$Scene2.show()
-	$Scene2/RevealTimer.start()
-
+	$InbetweenTimer.start()
 
 func _on_RevealTimer_timeout():
 #	2D.translate(InitialCamera["pos"])
@@ -72,8 +65,8 @@ func _on_RevealTimer_timeout():
 		$Scene2/Camera.translate(Vector2(-50, 5))
 		$Scene2/Camera.set_zoom(Vector2(zoom.x * 1.03, zoom.y * 1.03))
 	elif Scene2MovedLeftCount < 25:
-		$Scene2/Camera.set_zoom(Vector2(zoom.x * 1.005, zoom.y * 1.005))
-		$Scene2/Camera.translate(Vector2(-75, 5))
+		$Scene2/Camera.set_zoom(Vector2(zoom.x * 1.01, zoom.y * 1.01))
+		$Scene2/Camera.translate(Vector2(-75, 7))
 	else:
 		$Scene2/RevealTimer.stop()
 		emit_signal("scene2_zoom_end")
@@ -84,3 +77,13 @@ func _on_Intro_scene2_zoom_end():
 
 func _on_SceneSwitchTimer_timeout():
 	get_tree().change_scene("res://Main.tscn")
+
+func _on_InbetweenTimer_timeout():
+	$Scene1.hide()
+	$Scene1/Camera.clear_current()
+	$Scene1.queue_free()
+
+	$Scene2/Camera.make_current()
+	$Scene2/AnimatedSprite.set_animation("default")
+	$Scene2.show()
+	$Scene2/RevealTimer.start()
