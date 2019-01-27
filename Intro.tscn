@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Intro.gd" type="Script" id=1]
 [ext_resource path="res://art/prehistory/Shot 1-01.png" type="Texture" id=2]
-[ext_resource path="res://art/prehistory/Shot 2-01.png" type="Texture" id=3]
-[ext_resource path="res://art/prehistory/Shot 3-01.png" type="Texture" id=4]
+[ext_resource path="res://art/prehistory/Shot 2-3 TAKE IT-01.png" type="Texture" id=3]
+[ext_resource path="res://art/prehistory/talking head 0.png" type="Texture" id=4]
+[ext_resource path="res://art/prehistory/talking head 1.png" type="Texture" id=5]
+[ext_resource path="res://art/prehistory/talking head 2.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [node name="Intro" type="Node" index="0"]
@@ -66,15 +68,16 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Limit", "Smoothing" ]
 
-[node name="Scene2" type="AnimatedSprite" parent="." index="1"]
+[node name="Scene2" type="Sprite" parent="." index="1"]
 
-position = Vector2( -774.348, 252.954 )
-frames = SubResource( 1 )
-animation = "default"
+position = Vector2( 330, 1520 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Camera" type="Camera2D" parent="Scene2" index="0"]
 
-position = Vector2( 1284.35, 137.046 )
+position = Vector2( 918.348, -0.953735 )
 anchor_mode = 1
 rotating = false
 current = false
@@ -97,20 +100,40 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+_sections_unfolded = [ "Transform" ]
 
-[node name="ZoomTimer" type="Timer" parent="Scene2" index="1"]
+[node name="RevealTimer" type="Timer" parent="Scene2" index="1"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 0.2
 one_shot = false
+autostart = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Scene2" index="2"]
+
+position = Vector2( 1044.35, 137.046 )
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="SceneSwitchTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
 autostart = false
 
 [connection signal="scene1_move_end" from="." to="." method="_on_Intro_scene1_move_end"]
 
 [connection signal="scene1_zoom_end" from="." to="." method="_on_Intro_scene1_zoom_end"]
 
+[connection signal="scene2_zoom_end" from="." to="." method="_on_Intro_scene2_zoom_end"]
+
 [connection signal="timeout" from="Scene1/Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="Scene1/ZoomTimer" to="." method="_on_ZoomTimer_timeout"]
+
+[connection signal="timeout" from="Scene2/RevealTimer" to="." method="_on_RevealTimer_timeout"]
+
+[connection signal="timeout" from="SceneSwitchTimer" to="." method="_on_SceneSwitchTimer_timeout"]
 
 
