@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://art/start page/button/Start page-01.png" type="Texture" id=2]
+[ext_resource path="res://art/start page/button/button 1.png" type="Texture" id=3]
+[ext_resource path="res://art/start page/button/button 2.png" type="Texture" id=4]
+[ext_resource path="res://art/start page/button/house's pupil.png" type="Texture" id=5]
+
+[node name="MainMenu" type="Node" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="." index="0"]
+
+position = Vector2( 507, 389.25 )
+scale = Vector2( 1.04492, 1.04492 )
+texture = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 490.0
+margin_top = 580.0
+margin_right = 970.0
+margin_bottom = 774.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="Pupils" type="Node" parent="." index="2"]
+
+[node name="left" type="Sprite" parent="Pupils" index="0"]
+
+position = Vector2( 225, 350 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="right" type="Sprite" parent="Pupils" index="1"]
+
+position = Vector2( 290, 350 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]
+
+
