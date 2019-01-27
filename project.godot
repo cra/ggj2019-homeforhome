@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 window/size/height=768
 window/size/resizable=false
 window/size/always_on_top=true
+window/stretch/mode="viewport"
 
 [input]
 

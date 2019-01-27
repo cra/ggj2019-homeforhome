@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Intro.gd" type="Script" id=1]
+[ext_resource path="res://art/prehistory/Shot 1-01.png" type="Texture" id=2]
+[ext_resource path="res://art/prehistory/Shot 2-01.png" type="Texture" id=3]
+[ext_resource path="res://art/prehistory/Shot 3-01.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Intro" type="Node" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Scene1" type="Sprite" parent="." index="0"]
+
+position = Vector2( 870.29, 400.988 )
+scale = Vector2( 0.412235, 0.412235 )
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="Scene1" index="0"]
+
+process_mode = 0
+wait_time = 0.01
+one_shot = false
+autostart = true
+
+[node name="ZoomTimer" type="Timer" parent="Scene1" index="1"]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = false
+autostart = false
+
+[node name="Camera" type="Camera2D" parent="Scene1" index="2"]
+
+position = Vector2( -873.99, -26.6545 )
+scale = Vector2( 2.4258, 2.4258 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 1000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Limit", "Smoothing" ]
+
+[node name="Scene2" type="AnimatedSprite" parent="." index="1"]
+
+position = Vector2( -774.348, 252.954 )
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="Camera" type="Camera2D" parent="Scene2" index="0"]
+
+position = Vector2( 1284.35, 137.046 )
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="ZoomTimer" type="Timer" parent="Scene2" index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="scene1_move_end" from="." to="." method="_on_Intro_scene1_move_end"]
+
+[connection signal="scene1_zoom_end" from="." to="." method="_on_Intro_scene1_zoom_end"]
+
+[connection signal="timeout" from="Scene1/Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="Scene1/ZoomTimer" to="." method="_on_ZoomTimer_timeout"]
+
+
