@@ -1,16 +1,22 @@
 extends RichTextLabel
 
-var dialog = [
-	"Hey house. What is your name?",
-	"I don't know my name yet",
-	"BlablablablBlablablablBlablablablBlablablablBlablablablBlablablablBlablablablBlablablabla"
-]
+var dialog = []
 var page = 0
 
+func set_dialog(l):
+	dialog = l
+
 func _ready():
+	pass
+	
+func start():
+	page = 0
 	set_bbcode(dialog[page])
 	set_visible_characters(0)
 	set_process_input(true)
+	
+func stop():
+	set_process_input(false)
 
 func _input(event):
 	if Input.is_action_pressed("ui_interact"):
@@ -19,6 +25,8 @@ func _input(event):
 				page += 1
 				set_bbcode(dialog[page])
 				set_visible_characters(0)
+			else:
+				get_parent().hide()
 		else:
 			set_visible_characters(get_total_character_count())
 

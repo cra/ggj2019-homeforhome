@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://TravellersHouse.gd" type="Script" id=1]
-[ext_resource path="res://art/traveler's house/traveler's house.png" type="Texture" id=2]
+[ext_resource path="res://GuardHouse.gd" type="Script" id=1]
+[ext_resource path="res://art/house guard/house guard without eyes.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 148.388, 241 )
+extents = Vector2( 116.123, 137.234 )
 
-[node name="TravellersHouse" type="RigidBody2D" groups=[
+[node name="GuardHouse" type="RigidBody2D" groups=[
 "interactive",
 ]]
 
-position = Vector2( 0, -128 )
+position = Vector2( -0.520966, 9.54535 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -36,16 +36,13 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, -122 )
+position = Vector2( 0.880554, -20.9192 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" groups=[
-"interactive",
-]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, -122 )
+position = Vector2( -0.304962, -24.9917 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Z Index" ]
 
 

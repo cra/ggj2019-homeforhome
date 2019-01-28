@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://NPCHouse.tscn" type="PackedScene" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://art/hamlet, desert background strip.png" type="Texture" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://TravellersHouse.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GuardHouse.tscn" type="PackedScene" id=9]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 InitialX = -50
@@ -52,7 +53,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -540.0
 margin_top = 458.0
-margin_right = 2893.0
+margin_right = 1253.0
 margin_bottom = 658.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -61,8 +62,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 5 )
+expand = true
 stretch_mode = 2
-_sections_unfolded = [ "Grow Direction", "Hint", "Material", "Size Flags", "Visibility" ]
+_sections_unfolded = [ "Material", "Rect", "Visibility" ]
 
 [node name="Background" type="CanvasLayer" parent="." index="3"]
 
@@ -96,6 +98,32 @@ _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "M
 
 [node name="TravellersHouse" parent="." index="5" instance=ExtResource( 8 )]
 
-[connection signal="touch" from="Player" to="." method="_on_Player_touch"]
+[node name="HUD" type="CanvasLayer" parent="." index="6"]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="TalkBox" parent="HUD" index="0" instance=ExtResource( 3 )]
+
+visible = false
+position = Vector2( 15.9045, 184.038 )
+
+[node name="GuardHouse" parent="." index="7" instance=ExtResource( 9 )]
+
+[node name="InteractExitTimer" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
+
+[connection signal="body_exited" from="Player" to="." method="_on_Player_body_exited"]
+
+[connection signal="timeout" from="InteractExitTimer" to="." method="_on_InteractExitTimer_timeout"]
 
 

@@ -1,8 +1,6 @@
 extends RigidBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var whois = "traveller"
 
 var WithEyes = preload("res://art/traveler's house/traveler's house with eyes.png") 
 var WithoutEyes = preload("res://art/traveler's house/traveler's house.png")
@@ -17,12 +15,8 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-
 func enable_eyes():
 	$Sprite.texture = WithEyes
-#	pass # replace with function body
-
 
 func disable_eyes():
 	$Sprite.texture = WithoutEyes
-	#pass # replace with function body

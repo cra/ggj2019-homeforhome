@@ -6,7 +6,7 @@
 [ext_resource path="res://art/start page/button/button 2.png" type="Texture" id=4]
 [ext_resource path="res://art/start page/button/house's pupil.png" type="Texture" id=5]
 
-[node name="MainMenu" type="Node" index="0"]
+[node name="MainMenu" type="Node"]
 
 script = ExtResource( 1 )
 

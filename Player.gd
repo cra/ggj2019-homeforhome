@@ -2,7 +2,6 @@ extends Area2D
 
 export (int) var speed
 var screensize
-signal touch
 
 # class member variables go here, for example:
 # var a = 2
@@ -38,6 +37,9 @@ func _process(delta):
 #		print(self.get_overlapping_bodies())
 	
 	position += velocity * delta
+	# hack to prevent going left too far
+	if position.x < 100:
+		position.x = 100
 #	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, screensize.y/2-10, screensize.y/2+70)
 	
@@ -49,11 +51,3 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	elif velocity.y >= 0:
 		$AnimatedSprite.animation = "down"
-
-
-func _on_Player_body_entered(body):
-	if body.is_in_group("interactive"):
-		emit_signal("touch")
-#	$AnimatedSprite.animation = "bounce"
-#	set_process(false)
-#	$CollisionShape2D.disabled = true

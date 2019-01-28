@@ -20,6 +20,11 @@ func give_build_shift(is_tree):
 
 func _ready():
 	$TravellersHouse.position = Vector2(1000, InitialY)
+	$GuardHouse.position = Vector2(1500, InitialY)
+
+	$HUD/TalkBox/Text.set_dialog([
+		"[House]: Uff! Better find a way out of here before it's too late!",
+	])
 	
 	randomize()
 	var x = InitialX
@@ -32,6 +37,9 @@ func _ready():
 			obj.set_z_index(0)
 		obj.position = Vector2(x, InitialY)
 		add_child(obj)
+		
+	var size = $Road.texture.get_size()
+	$Road.set_size(Vector2(size.x + x, size.y))
 
 #	for i in range(10):
 #		var tree = bgTree.instance()
@@ -53,10 +61,38 @@ func new_game():
 #	# Update game logic here.
 #	pass
 
-
 func _on_Player_touch():
 	$TravellersHouse.enable_eyes()
 	print("Fuck meee")
-#	var tb = TalkBox.instance()
-#	add_child(tb)
+
+func _on_Player_body_entered(body):
+	if body.is_in_group("interactive"):
+		if body.whois == "traveller":
+			$TravellersHouse.enable_eyes()
+			$HUD/TalkBox/Text.set_dialog([
+				"Hey house. What is your name?",
+				"I don't know my name yet",
+				"BlablablablBlablablablBlablablablBlablablablBlablablablBlablablablBlablablablBlablablabla"
+			])
+			$HUD/TalkBox.show()
+			$HUD/TalkBox/Text.start()
+		elif body.whois == "guard":
+			$GuardHouse.enable_eyes()
+			$HUD/TalkBox/Text.set_dialog([
+				"Bububu"
+			])
+			$HUD/TalkBox.show()
+			$HUD/TalkBox/Text.start()
 	#print($Player.get_collider())
+
+func _on_Player_body_exited(body):
+	if body.is_in_group("interactive"):
+		if body.whois == "traveller":
+			$TravellersHouse.disable_eyes()
+		if body.whois == "guard":
+			$GuardHouse.disable_eyes()
+		$InteractExitTimer.start()
+
+func _on_InteractExitTimer_timeout():
+	$HUD/TalkBox.hide()
+	$HUD/TalkBox/Text.stop()
